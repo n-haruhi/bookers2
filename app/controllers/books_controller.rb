@@ -12,9 +12,18 @@ class BooksController < ApplicationController
   end
 
   def index
+    @books = Book.all
   end
 
   def show
+    @book = Book.find(params[:id])
+  end
+
+  def destroy
+    book = Book.find(params[:id])
+    if book.destroy
+      redirect_to '/books'
+    end
   end
 
   # 投稿データのストロングパラメータ
