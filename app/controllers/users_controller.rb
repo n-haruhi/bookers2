@@ -8,6 +8,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id]) # URLを参考に特定のidを持ったレコードを取得する
   end
 
+  def index
+    @users = User.all
+  end
+
   def update
     @user = User.find(params[:id]) # ユーザーの取得
     if @user.update(user_params) # ユーザーのアップデート

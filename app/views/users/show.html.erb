@@ -1,19 +1,20 @@
-<h1>(Users#show)</h1>
+<h2>User info(Users#show)</h2>
 <!-- ユーザーの詳細 -->
 <div>
-  <h3><%= @user.name %></h3>
   <%= image_tag @user.get_profile_image(100,100) %>
+
+  <h5>name</h5>
+  <h5><%= @user.name %></h5>
+
+  <h5>introduction</h5>
+  <h5><%= @user.introduction %></h5>
+
   <% if @user == current_user %>
-    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+    <p><%= link_to edit_user_path(@user) do %></p>
+      <i class="fa-solid fa-user-gear"></i>
+    <% end %>
   <% end %>
 </div>
 
 <!-- ユーザーの投稿一覧 -->
-<% @books.each do |book| %>
-<div>
-  <p>投稿ユーザー画像：<%= image_tag book.user.get_profile_image(100,100) %></p>
-  <p>Title：<%= book.title %></p>
-  <p>Opinion：<%= book.body %></p>
-  <p>ユーザーネーム：<%= book.user.name %></p>
-</div>
-<% end %>
+<%= render 'books/list', books: @books %>

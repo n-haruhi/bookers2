@@ -2,35 +2,87 @@
 <html>
   <head>
     <title>Bookers2</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/e99d188784.js" crossorigin="anonymous"></script>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <header>
-      <% if user_signed_in? %>
-        <li>
-          <%= link_to '(投稿フォーム)', new_book_path %>
-        </li>
-        <li>
-          <%= link_to 'マイページ', user_path(current_user.id) %>
-        </li>
-        <li>
-          <%= link_to "Log out", destroy_user_session_path, method: :delete %>
-        </li>
-      <% else %>
-        <li>
-          <%= link_to "Sign up", new_user_registration_path %>
-        </li>
-        <li>
-          <%= link_to "Log in", new_user_session_path %>
-        </li>
-      <% end %>
+    <header class="bg-dark">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <a class="navbar-brand p-1 text-white" href="/">Bookers</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <%= link_to 'user_path(current_user.id)', class: "nav-link" do %>
+                  <i class="fa-solid fa-house"></i>
+                  <span class="text-white">Home</span>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to users_path, class: "nav-link" do %>
+                  <i class="fa-solid fa-users"></i>
+                  <span class="text-white">Users</span>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to books_path, class: "nav-link" do %>
+                  <i class="fa-solid fa-book-open"></i>
+                  <span class="text-white">Books</span>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span class="text-white">Log out</span>
+              <% end %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to '/', class: "nav-link" do %>
+                  <i class="fa-solid fa-house"></i>
+                  <span class="text-white">Home</span>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to about_path, class: "nav-link" do %>
+                  <i class="fa-solid fa-link"></i>
+                  <span class="text-white">About</span>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to new_user_registration_path, class: "nav-link" do %>
+                  <i class="fa-solid fa-user-plus"></i>
+                  <span class="text-white">Sign up</span>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to new_user_session_path, class: "nav-link" do %>
+                  <i class="fa-solid fa-right-to-bracket"></i>
+                  <span class="text-white">Log in</span>
+                <% end %>
+              </li>
+            <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </header>
+    <main class="mb-auto">
     <%= yield %>
+    </main>
+    <footer>
+      <p class="footer-text fixed-bottom text-center">CopyRight Infratop.inc</p>
+    </footer>
   </body>
 </html>
