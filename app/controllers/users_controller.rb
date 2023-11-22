@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @books = @user.books # 個人が投稿したものすべてを表示できる
+    @book = Book.new
   end
 
   def edit
