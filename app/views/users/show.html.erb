@@ -1,23 +1,29 @@
-<h2>User info(Users#show)</h2>
+<h2>User info</h2>
 <!-- ユーザーの詳細 -->
 <div>
   <%= image_tag @user.get_profile_image(100,100) %>
-
-  <h5>name</h5>
-  <h5><%= @user.name %></h5>
-
-  <h5>introduction</h5>
-  <h5><%= @user.introduction %></h5>
+  <table class="table">
+    <tbody>
+      <tr>
+        <td><strong>name</strong></td>
+        <td><%= @user.name %></td>
+      </tr>
+      <tr>
+        <td><strong>introduction</strong></td>
+        <td><%= @user.introduction %></td>
+      </tr>
+    </tbody>
+  </table>
 
   <% if @user == current_user %>
-    <p><%= link_to edit_user_path(@user), class: "btn btn-outline-secondary" do %></p>
+    <%= link_to edit_user_path(@user), class: "btn btn-sm btn-block btn-outline-secondary" do %>
       <i class="fa-solid fa-user-gear"></i>
     <% end %>
   <% end %>
 </div>
 
-<!-- 新規投稿画面 -->
-<%= render 'books/new', book: @book %>
-
 <!-- ユーザーの投稿一覧 -->
 <%= render 'books/list', books: @books %>
+
+<!-- 新規投稿画面 -->
+<%= render 'books/new', book: @book %>

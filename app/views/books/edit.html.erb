@@ -1,9 +1,9 @@
 <h1>Editing Book</h1>
 
-<% if book.errors.any? %>
-  <%= book.errors.count %>error prohibited this obj from being saved:
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>error prohibited this obj from being saved:
   <ul>
-    <% book.errors.full_messages.each do |message| %>
+    <% @book.errors.full_messages.each do |message| %>
       <li><%= message %></li>
     <% end %>
   </ul>
@@ -17,8 +17,8 @@
       <%= f.text_field :title, autofocus: true, id:"inputTitle" %><br>
     </div>
     <div class="p-2">
-      <label for="inputOpinion">Opinion</label><br>
-      <%= f.text_area :Opinion, autofocus: true, id:"inputOpinion" %><br>
+      <label for="inputBody">Opinion</label><br>
+      <%= f.text_area :Opinion, autofocus: true, id:"inputBody" %><br>
     </div>
     <div class="p-2">
       <%= f.submit "Update Book", class: "btn btn-secondary" %>

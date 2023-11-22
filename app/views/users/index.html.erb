@@ -1,9 +1,21 @@
-<h2>Users(Users#index)</h2>
+<h2>Users</h2>
 
 <% @users.each do |user| %>
-  <div>
-    <p>ユーザー画像：<%= image_tag user.get_profile_image(100,100) %></p>
-    <p>name：<%= user.name %></p>
-    <%= link_to "Show", user_path(user.id) %>
-  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">image</th>
+        <th scope="col">name</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= image_tag user.get_profile_image(100,100) %></td>
+        <td><%= user.name %></td>
+        <td><%= link_to "Show", user_path(user.id) %></td>
+      </tr>
+    </tbody>
+  </table>
 <% end %>
