@@ -4,20 +4,18 @@
 <!-- ユーザーの詳細 -->
 <h2>User info</h2>
 <div>
-  <%= image_tag user.get_profile_image(100,100) %>
   <table class="table">
-    <thead>
+    <tbody>
+      <%= image_tag current_user.get_profile_image(100,100) %>
       <tr>
-        <th scope="col">name</th>
-        <th scope="col"><%= user.name %></th>
+        <th>name</th>
+        <th><%= current_user.name %></th>
       </tr>
-    </thead>
-    <thead>
       <tr>
-        <th scope="col">introduction</th>
-        <th scope="col"><%= user.introduction %></th>
+        <th>introduction</th>
+        <th><%= current_user.introduction %></th>
       </tr>
-    </thead>
+    </tbody>
   </table>
 </div>
 <% if user == current_user %>
