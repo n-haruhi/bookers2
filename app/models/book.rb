@@ -1,16 +1,11 @@
 class Book < ApplicationRecord
 
-  # 画像
   has_one_attached :image
   belongs_to :user
 
-  #titleが存在しているかを確認するバリデーション
-  #bodyが存在しているかを確認するバリデーション
   validates :title, presence: true
-  validates :body, presence: true
+  validates :body, presence: true, length: { maximum: 200 }
 
-
-  # 画像表示
   def get_image
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/default-image.jpg')

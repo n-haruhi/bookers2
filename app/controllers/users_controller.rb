@@ -1,6 +1,16 @@
 class UsersController < ApplicationController
   before_action :is_matching_login_user, only: [:edit, :update]
 
+  def create
+    @user = User.new(user_params)
+    if @user.save
+      flash[:success] = "Signed in successfully."
+      redirect_to root_path
+    else
+      render 'users/show'
+    end
+  end
+
   def show
     @user = User.find(params[:id])
     @books = @user.books # 個人が投稿したものすべてを表示できる
@@ -8,7 +18,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id]) # URLを参考に特定のidを持ったレコードを取得する
+    @user = User.find(params[:id])
   end
 
   def index
@@ -22,6 +32,11 @@ class UsersController < ApplicationController
     else
       render 'users/show'
     end
+  end
+
+  def destroy　# ログアウト処理を実行
+    flash[:success] = "Signed out successfully."
+    redirect_to root_path
   end
 
 
