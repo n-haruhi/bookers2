@@ -33,8 +33,7 @@ class UsersController < ApplicationController
       flash[:success] = "You have updated user successfully."
       redirect_to user_path(@user.id) # ユーザーの詳細ページへのパス
     else
-      @books = Book.all
-      render 'users/show'
+      render :edit
     end
   end
 
