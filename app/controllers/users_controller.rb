@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:success] = "Signed in successfully."
-      redirect_to root_path
+      redirect_to books_path
     else
       render 'users/show'
     end
@@ -29,8 +29,10 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id]) # ユーザーの取得
     if @user.update(user_params) # ユーザーのアップデート
+      flash[:success] = "You have updated user successfully."
       redirect_to user_path(@user.id) # ユーザーの詳細ページへのパス
     else
+      @book = Book.new
       render 'users/show'
     end
   end

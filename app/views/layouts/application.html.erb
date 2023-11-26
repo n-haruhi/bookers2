@@ -79,7 +79,10 @@
       </nav>
     </header>
     <main>
-    <%= yield %>
+      <% flash.each do |message_type, message| %>
+        <div class="flash-message <%= message_type %>"><%= message %></div>
+      <% end %>
+      <%= yield %>
     </main>
     <footer>
       <p class="footer-text fixed-bottom text-center">CopyRight Infratop.inc</p>
