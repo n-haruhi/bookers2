@@ -24,15 +24,16 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     @book = Book.new
+    @user = current_user
   end
 
   def update
     @user = User.find(params[:id]) # ユーザーの取得
-    if @user.update(user_params) # ユーザーのアップデート
+    if @user.update(user_params)
       flash[:success] = "You have updated user successfully."
       redirect_to user_path(@user.id) # ユーザーの詳細ページへのパス
     else
-      @book = Book.new
+      @books = Book.all
       render 'users/show'
     end
   end
